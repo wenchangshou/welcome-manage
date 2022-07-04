@@ -1,0 +1,26 @@
+type Response {
+	Code int    `json:"code"`
+	Msg  string `json:"msg"`
+}
+type SetTitleRequest {
+	Title  string `json:"title"`
+	Size   int    `json:"size"`
+	Family string `json:"family"`
+	Color  string `json:"color"`
+}
+type GetTitleResponse {
+	Title  string `json:"title"`
+	Size   int    `json:"size"`
+	Family string `json:"family"`
+	Color  string `json:"color"`
+}
+type NullRequest {
+}
+service welcome-api {
+	@handler SetTitleHandler
+	post /active/title (SetTitleRequest)returns(Response)
+	@handler  GetTitleHandler
+	get /active/title(NullRequest) returns(GetTitleResponse)
+	@handler UploadHandler
+	post /upload  returns (Response)
+}
